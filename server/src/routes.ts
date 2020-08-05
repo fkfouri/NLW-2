@@ -27,9 +27,10 @@ routes.post('/classes', async (request, response) =>{
         schedule
     } = request.body
 
-   
+    const trx = await db.transaction()
+
     //criando o usuario
-    const insertedUserIds = await db('users').insert(                    //db demora um pouco, entao uso conceito de promisse
+    const insertedUserIds = await trx('users').insert(                    //db demora um pouco, entao uso conceito de promisse
         //usando short sintaxe
         {name, avatar, whatsapp, bio }
         // poderia ser assim: { name: name, avatar: avatar, etc}
@@ -38,7 +39,7 @@ routes.post('/classes', async (request, response) =>{
     const user_id = insertedUserIds[0];
 
     //criando a classe
-    const insertedClassesIds = await db('classes').insert({
+    const insertedClassesIds = await trx('classes').insert({
         subject, cost, user_id
     })
 
@@ -55,7 +56,10 @@ routes.post('/classes', async (request, response) =>{
         }
     })
 
-    await db('class_schedule').insert(classSchedule_usingInterface);
+    await trx('class_schedule').insert(classSchedule_usingInterface);
+
+    //commit a transaction
+    await trx.commit()
 
     return response.send()
 })
