@@ -55,7 +55,20 @@ Query ParamS (request.query): Passar os restante das coisas. Usada em paginacao,
 
 Para efeito de desenvolvimento sera usado o sqlite3. `yarn add knex sqlite3`
 
+### Knex
 O knex é uma biblioteca query builder para escrever script sql sem usar sql.
 Ex. select * from users 
     knex('users').select(*)
 
+A instalaçao do Knex habilita comandos em CLI `yarn knex help`
+
+### Migration
+É um recurso para controla a versao do banco de dados.
+
+Na raiz da pasta cria-se o arquivo knexfile.ts. Porém, o knex nao consegue ler arquivo tipo typescript, portanto, escrever no formato javascript tradicional.
+
+Na pasta migration, as execuçoes ocorrerao na sequencia dos arquivos. Ex. 00_create_users.ts rodara antes do arquivo 01_file.ts. Esta sequencia é importante para a criação de tabelas com foreign key.
+
+Incluir comandos de knex migrate no script do arquivo package.json. Para rodar basta usar `yarn knex:migrate`
+
+Para visualizar se criou a tabela, utilize a extensao SQLite do VisualCode. 
