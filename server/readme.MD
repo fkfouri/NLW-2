@@ -8,4 +8,6 @@
 
 - Instalar modo desenvolvimento um conjunto de bibliotecas que executa o servidor e atualiza sempre que houver uma atualização.  ```yarn add ts-node-dev -D```
 
+- No arquivo package.json incluir o script 'ts-node-dev src/server.ts' ou `tsnd src/server.ts`
 
+- Excutar o comando `yarn start`.
