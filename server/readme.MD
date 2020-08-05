@@ -22,7 +22,22 @@
 - Inclusao de um tipagem para entender a biblioteca tb feita em Typescript com flag de desenvolvimento. `yarn add @types/express -D`
 
 
+## Framework Express - Nodejs
 
+Metodos: 
+    - GET: Buscar ou listar uma informacao
+    - POST: criar uma nova info no backend
+    - PUT: Atualizar uma informacao existente
+    - DELETE: Deletar uma informacao existente
+
+
+Corpo (request.body): Dados para criacao ou atualizacao de um registro. Ex.: Conteudo Json
+             
+Route Params (request.params): Identificar qualq recurso quero atualizar ou deletar Ex.: /users/:id
+              
+Query ParamS (request.query): Passar os restante das coisas. Usada em paginacao, filtros, ordenacao.  Ex.: /users?page=2&sort=name
+               
+ 
 
 
 
