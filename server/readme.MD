@@ -18,3 +18,11 @@
     - `--respawn` restart da aplicação para qualquer modificacao.
 
 - Inclusao do microframework chamado express `yarn add express`
+
+- Inclusao de um tipagem para entender a biblioteca tb feita em Typescript com flag de desenvolvimento. `yarn add @types/express -D`
+
+
+
+
+
+
