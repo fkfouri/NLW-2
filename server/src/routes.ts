@@ -29,39 +29,54 @@ routes.post('/classes', async (request, response) =>{
 
     const trx = await db.transaction()
 
-    //criando o usuario
-    const insertedUserIds = await trx('users').insert(                    //db demora um pouco, entao uso conceito de promisse
-        //usando short sintaxe
-        {name, avatar, whatsapp, bio }
-        // poderia ser assim: { name: name, avatar: avatar, etc}
-        )
+    try{
+            
+        //criando o usuario
+        const insertedUserIds = await trx('users').insert(                    //db demora um pouco, entao uso conceito de promisse
+            //usando short sintaxe
+            {name, avatar, whatsapp, bio }
+            // poderia ser assim: { name: name, avatar: avatar, etc}
+            )
 
-    const user_id = insertedUserIds[0];
+        const user_id = insertedUserIds[0];
 
-    //criando a classe
-    const insertedClassesIds = await trx('classes').insert({
-        subject, cost, user_id
-    })
+        //criando a classe
+        const insertedClassesIds = await trx('classes').insert({
+            subject, cost, user_id
+        })
 
-    const class_id = insertedClassesIds[0]
+        const class_id = insertedClassesIds[0]
 
-    //vou percorrer cada item do array
-    const classSchedule_genericType = schedule.map((scheduleItem : any) => { })
-    const classSchedule_usingInterface = schedule.map((scheduleItem : ScheduleItem) => { 
-        return{
-            class_id,
-            week_day: scheduleItem.week_day,
-            from: convertHoutToMinutes(scheduleItem.from),
-            to: convertHoutToMinutes(scheduleItem.to)
-        }
-    })
+        //vou percorrer cada item do array
+        const classSchedule_genericType = schedule.map((scheduleItem : any) => { })
+        const classSchedule_usingInterface = schedule.map((scheduleItem : ScheduleItem) => { 
+            return{
+                class_id,
+                week_day: scheduleItem.week_day,
+                from: convertHoutToMinutes(scheduleItem.from),
+                to: convertHoutToMinutes(scheduleItem.to)
+            }
+        })
 
-    await trx('class_schedule').insert(classSchedule_usingInterface);
+        await trx('class_schedule').insert(classSchedule_usingInterface);
 
-    //commit a transaction
-    await trx.commit()
+        //commit a transaction
+        await trx.commit()
 
-    return response.send()
+        //codigo de executado com sucesso
+        return response.status(201).send()
+    } catch(err){
+        await trx.rollback()
+
+        //codigo 400 é um tipo de erro
+        return response.status(400).json({
+            error: 'Unexpected error while creating new class'
+        })
+
+    }
+
+
+   
 })
 
 export default routes
