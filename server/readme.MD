@@ -38,6 +38,24 @@ Route Params (request.params): Identificar qualq recurso quero atualizar ou dele
 Query ParamS (request.query): Passar os restante das coisas. Usada em paginacao, filtros, ordenacao.  Ex.: /users?page=2&sort=name
                
  
+## Funcionalidas / Casos de Uso
+
+### Entidade Conexoes
+
+- Rota para listar o total de conexoes realizadas;
+- Rota para criar uma nova conexao;
+
+### Entidade Aulas
+- Rota para criar uma aula;
+- Rota para listar aulas;
+    - filtrar por materia, dia da semana e horario;
 
 
+## Banco de dados
+
+Para efeito de desenvolvimento sera usado o sqlite3. `yarn add knex sqlite3`
+
+O knex é uma biblioteca query builder para escrever script sql sem usar sql.
+Ex. select * from users 
+    knex('users').select(*)
 
