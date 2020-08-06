@@ -71,4 +71,14 @@ Na pasta migration, as execuçoes ocorrerao na sequencia dos arquivos. Ex. 00_cr
 
 Incluir comandos de knex migrate no script do arquivo package.json. Para rodar basta usar `yarn knex:migrate`
 
-Para visualizar se criou a tabela, utilize a extensao SQLite do VisualCode. 
+Para visualizar se criou a tabela, utilize a extensao SQLite do VisualCode.
+
+## Cors
+
+Permitir que aplicacoes de diferentes portas se acessem. Ex localhost:3000 converse com localhost:3333. Por padrao, apenas aplicacoes no mesmo endereco facam acesso ao API.
+
+`yarn add cors`
+
+Pode ser que seja necessario incluir o type como dependencia de desenvolvimento.
+
+`yarn add @types/cors -D` ou `npm install @types/cors`.
