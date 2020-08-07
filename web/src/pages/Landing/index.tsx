@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
 //cria uma variavel javascript
@@ -8,9 +8,32 @@ import studyIcon from '../../assets/images/icons/study.svg'
 import giveClassesIcon from '../../assets/images/icons/give-classes.svg'
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg'
 
+
+
 import './style.css';
+import api from '../../services/api';
 
 function Landing(){
+    const [totalConnection, setTotalConnections] = useState(0)
+
+    /**
+     * useEffect é uma funcao com dois paramentros. O primeiro eh uma funcao, e a segunda sao as informacoes de quando disparar a funcao do primeiro parametro.
+     * Por exemplo, a funcao que atualiza o numero de conexoes, por exemplo... numero de likes. Um like novo dispara a funcao definida no primeiro parametro
+     * 
+     * Quando quero executar somente uma vez a funcao, deixo o segundo parametro como vazio [].
+     */
+
+    useEffect(() =>{
+        //nome da rota. pode ter ou nao o '/'
+        api.get('/connections').then(response =>{
+            //console.log(response)
+
+            const {total} = response.data;
+
+            setTotalConnections(total);
+        })
+    }, [])
+
     return (
             <div id="page-landing">
                 <div id="page-landing-content" className="container">
@@ -36,7 +59,7 @@ function Landing(){
                     
 
                     <span className="total-connections">
-                        Total de 200 conexões realizadas <img src={purpleHeartIcon} alt="Coração roxo"/>
+                        Total de {totalConnection} conexões realizadas <img src={purpleHeartIcon} alt="Coração roxo"/>
                     </span>
                 </div>
             </div>
