@@ -17,6 +17,10 @@ function Landing(){
         navigate('GiveClasses')
     }
 
+    function handleNavigateToStudyPages(){
+        navigate('Study')
+    }
+
 
 
     return (
@@ -30,7 +34,7 @@ function Landing(){
 
             <View style={styles.buttonsContainer} >
                 <RectButton 
-                    
+                    onPress = {handleNavigateToStudyPages}
                     style={[styles.button, styles.buttonPrimary]} 
                 >
 
