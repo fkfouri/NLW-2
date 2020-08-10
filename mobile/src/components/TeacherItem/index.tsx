@@ -9,6 +9,7 @@ import whatappIcon from '../../assets/images/icons/whatsapp.png'
 import { RectButton } from 'react-native-gesture-handler'
 
 import AsynchStorage from '@react-native-community/async-storage'
+import api from '../../services/api'
 
 
 export interface Teacher{
@@ -32,6 +33,10 @@ const TeacherItem: React.FunctionComponent<TeacherItemProps> = ({ teacher, favor
 
 
     function handleLinkToWhatsapp(){
+        api.post('connections',{
+            user_id: teacher.id
+        })
+
         //Deep Link => uma aplicacao abrir outra
         Linking.openURL(`whatsapp://send?phone=${teacher.whatsapp}`)
     }
