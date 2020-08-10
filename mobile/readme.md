@@ -18,3 +18,9 @@
 
 - Instalar o axios
     - `yarn add axios`
+
+
+## Banco de Dados locaL para a funcao favoritos
+
+- Instalar bd local
+    - `expo install @react-native-community/async-storage`

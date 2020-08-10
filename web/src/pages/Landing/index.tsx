@@ -20,9 +20,12 @@ function Landing(){
      * useEffect é uma funcao com dois paramentros. O primeiro eh uma funcao, e a segunda sao as informacoes de quando disparar a funcao do primeiro parametro.
      * Por exemplo, a funcao que atualiza o numero de conexoes, por exemplo... numero de likes. Um like novo dispara a funcao definida no primeiro parametro
      * 
-     * Quando quero executar somente uma vez a funcao, deixo o segundo parametro como vazio [].
+     * Quando quero executar somente uma vez a funcao, no comeco do componente
+     * deixo o segundo parametro como vazio [].
+     * 
+     * No segundo parametro posso colocar uma variavel, e toda vez que for chamado essa 
+     * variavel dispara a funcao.
      */
-
     useEffect(() =>{
         //nome da rota. pode ter ou nao o '/'
         api.get('/connections').then(response =>{
