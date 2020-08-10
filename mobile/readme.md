@@ -14,4 +14,7 @@
     - `yarn add @react-navigation/stack`
     - `yarn add @react-navigation/bottom-tabs`
 
+## Conectando com o API
 
+- Instalar o axios
+    - `yarn add axios`

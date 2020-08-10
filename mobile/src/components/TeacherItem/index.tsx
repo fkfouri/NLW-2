@@ -8,11 +8,23 @@ import unfavoriteIcon from '../../assets/images/icons/unfavorite.png'
 import whatappIcon from '../../assets/images/icons/whatsapp.png'
 import { RectButton } from 'react-native-gesture-handler'
 
-interface TeacherItemProps{
-    title?: string;
+
+export interface Teacher{
+    id: number
+    avatar:string;
+    bio: string;
+    cost: number;
+    name: string,
+    subject: string,
+    whatsapp: string
 }
 
-const TeacherItem: React.FunctionComponent<TeacherItemProps> = ({ title }) => {
+interface TeacherItemProps{
+    teacher: Teacher;
+}
+
+
+const TeacherItem: React.FunctionComponent<TeacherItemProps> = ({ teacher }) => {
     return (
         <View style={styles.container}>
             <View style={styles.profile}>
@@ -20,27 +32,25 @@ const TeacherItem: React.FunctionComponent<TeacherItemProps> = ({ title }) => {
                     style={styles.avatar}
                     source={{ 
                         //para aparecer a imagem precisa setar o height e width
-                        uri: 'https://avatars0.githubusercontent.com/u/1031017?s=460&u=d26b4740df88663f9a4864d010ff6e7dce5386fd&v=4'
+                        uri: teacher.avatar
                         }}>
                         
                 </Image>
 
                 <View style={styles.profileInfo}>
-                    <Text style={styles.name}>Fabio</Text>
-                    <Text style={styles.subject}>Matematica</Text>
+                    <Text style={styles.name}>{teacher.name}</Text>
+                    <Text style={styles.subject}>{teacher.subject}</Text>
                 </View>
             </View>
 
             <Text style={styles.bio}>
-                xxxxxxxxxx
-                {'\n'}{'\n'}
-                ghfhgfhgfhg
+                {teacher.bio}
             </Text>
 
             <View style={styles.footer}>
                 <Text style={styles.price}>
                     Preço/Hora {' '}
-                    <Text style={styles.priceValue}>R$ 20,00</Text>
+                    <Text style={styles.priceValue}>R$ {teacher.cost}</Text>
                 </Text>
 
 
